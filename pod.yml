@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webpod
+  labels:
+    env: test
+    dc: IN
+
+spec:
+  containers:
+  - name: "mywebcont"
+    image: "vimal13/apache-webserver-php"
+    volumeMounts:
+     - name: web-vol1
+       mountPath:  /usr/local/apache2/htdocs
+  volumes:
+  - name: web-vol1 
+    persistentVolumeClaim: 
+      claimName: webpvc
+
